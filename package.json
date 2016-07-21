@@ -1,0 +1,15 @@
+{
+  "name": "dsa-notes",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "node-sass-middleware": "^0.9.7",
+    "path": "^0.12.7",
+    "pug": "^2.0.0-beta4",
+    "rfr": "^1.2.2"
+  }
+}

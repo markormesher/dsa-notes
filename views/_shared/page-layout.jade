@@ -1,0 +1,19 @@
+extends root-layout
+
+block head
+	link(rel = 'stylesheet', href = '/_shared/css/page-layout.css')
+	block page-head
+
+block body
+	div.container
+		div.row
+			div.col-md-12
+
+				//- breadcrumbs
+				ol.breadcrumb
+					li: a(href = '/') Home
+					if _.breadcrumbs
+						each crumb in _.breadcrumbs
+							li: a(href = crumb[0]) #{crumb[1]}
+
+				block page-body
