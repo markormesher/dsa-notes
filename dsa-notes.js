@@ -13,13 +13,10 @@ app.use(sassMiddleware({
 	outputStyle: 'compressed'
 }));
 
-// pull routes from routes folder
-routes = {
-	'': rfr('./controllers/root'),
-	'data-structures': rfr('./controllers/data-structures'),
-	'algorithms': rfr('./controllers/algorithms')
-};
-for (var r in routes) if (routes.hasOwnProperty(r)) app.use('/' + r, routes[r]);
+// pull routes from controllers folder
+app.use('/', rfr('./controllers/root'));
+app.use('/data-structures', rfr('./controllers/data-structures'));
+app.use('/algorithms', rfr('./controllers/algorithms'));
 
 // stop favicon requests
 app.use('/favicon.ico', function (req, res) {
@@ -28,7 +25,7 @@ app.use('/favicon.ico', function (req, res) {
 
 // views
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler
