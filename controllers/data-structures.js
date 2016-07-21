@@ -13,4 +13,17 @@ router.get('/', function (req, res) {
 	});
 });
 
+router.get('/arrays', function (req, res) {
+	res.render('data-structures/arrays', {
+		_: {
+			activePage: 'root',
+			title: 'Data Structures',
+			breadcrumbs: [
+				rootCrumb,
+				['/data-structures/arrays', 'Arrays']
+			]
+		}
+	});
+});
+
 module.exports = router;
