@@ -4,4 +4,71 @@ block page-body
 
 	h1 Arrays
 
-	p TODO
+	p An array is a container structure that stores a #[strong fixed length] set of values, all of which must be of the #[strong same time]. The size of an array is established and fixed when it is created. Elements of an array are accessed by their index; index numbering starts from zero.
+
+	h2 Efficiency
+
+	div.row
+		div.col-md-6
+			table.table
+				tr
+					th Indexing
+					td.success O(1)
+				tr
+					th Search
+					td.danger O(n)
+				tr
+					th Insert/delete at beginning
+					td N/A
+				tr
+					th Insert/delete at end
+					td N/A
+				tr
+					th Insert/delete in middle
+					td N/A
+
+	h2 Examples
+
+	div.row
+		div.col-md-6
+			h3 Java
+
+			pre: code.java.
+				// create an array for 3 integers
+				int[] luckyNumbers = new int[3];
+
+				// populate array
+				luckyNumbers[0] = 1;
+				luckyNumbers[1] = 4;
+				luckyNumbers[2] = 15;
+
+				// create an array with an initialiser
+				char[] hello = { 'h', 'e', 'l', 'l', 'o' };
+
+				// access some elements
+				System.out.println(luckyNumbers[2]); // 15
+				System.out.println(hello[0]); // h
+
+		div.col-md-6
+			h3 C++
+
+			pre: code.cpp.
+				// create an array for 3 integers
+				int luckyNumbers[3];
+
+				// populate array
+				luckyNumbers[0] = 1;
+				luckyNumbers[1] = 4;
+				luckyNumbers[2] = 15;
+
+				// create an array with an initialiser
+				char hello[] = { 'h', 'e', 'l', 'l', 'o' };
+
+				// access some elements
+				cout &lt;&lt; luckyNumbers[2]; // 15
+				cout &lt;&lt; hello[0]; // h
+
+	h3 See Also
+
+	ul
+		li: a(href = '/data-structures/dynamic-arrays') Dynamic Arrays

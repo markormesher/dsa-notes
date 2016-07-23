@@ -5,11 +5,21 @@
 	line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6, p, li, input, textarea, label, span {
+pre, code, pre code, pre code span {
+	font-size: 13px;
+}
+
+h1, h2, h3, h4, h5, h6, p, li, input, textarea, label, td, th {
 	font-family: 'Lato', sans-serif !important;
 	font-weight: lighter;
 }
 
-strong {
+strong, th {
 	font-weight: normal;
+}
+
+// bootstrap mods
+
+.table-non-full {
+	width: auto !important;
 }

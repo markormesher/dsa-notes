@@ -1,0 +1,72 @@
+extends ../_shared/page-layout
+
+block page-body
+
+	h1 Dynamic Arrays
+
+	p A dynamic array, also known as a #[strong growable] or #[strong resizable] array, is a container structure that provides the same features as a regular array #[strong without requiring the size to be declared or fixed].
+
+	p Dynamic arrays are usually #[strong built on top of standard arrays] of a fixed size. When the internal fixed-size array is full, the next insertion causes a new, larger array to be created and the existing elements to be copied to it.
+
+	p The total space in the internal array is the dynamic array's #[strong capacity] or #[strong physical size]; the currently used space is its #[strong logical size].
+
+	h2 Efficiency
+
+	div.row
+		div.col-md-6
+			table.table
+				tr
+					th Indexing
+					td.success O(1)
+				tr
+					th Search
+					td.danger O(n)
+				tr
+					th Insert/delete at beginning
+					td.danger O(n)
+				tr
+					th Insert/delete at end
+					td.success O(1) #[em amortised*]
+				tr
+					th Insert/delete in middle
+					td.danger O(n)
+		div.col-md-6
+			p * Dynamic arrays are expanded by a constant factor each time, usually in the range 1.25-2. Expanding by a constant factor ensures that inserting #[code n] elements takes #[code O(n)] time, meaning each insertion takes #[strong amortized constant time].
+
+	h2 Examples
+
+	div.row
+		div.col-md-6
+			h3 Java
+
+			pre: code.java.
+				// create a dynamic array of integers
+				ArrayList&lt;Integer&gt; scores = new ArrayList<>();
+
+				// add any number of values
+				for (int i = 0; i < 1000; ++i) {
+					scores.add(i);
+				}
+
+				// retrieve a value
+				System.out.println(scores.get(3)); // 3
+
+		div.col-md-6
+			h3 C++
+
+			pre: code.cpp.
+				// create a dynamic array of integers
+				vector&lt;int&gt; scores;
+
+				// add any number of values
+				for (int i = 0; i < 1000; ++i) {
+					scores.push_back(i);
+				}
+
+				// retrieve a value
+				cout &lt;&lt; scores[3]; // 3
+
+	h3 See Also
+
+	ul
+		li: a(href = '/data-structures/arrays') Arrays

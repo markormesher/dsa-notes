@@ -17,10 +17,23 @@ router.get('/arrays', function (req, res) {
 	res.render('data-structures/arrays', {
 		_: {
 			activePage: 'root',
-			title: 'Data Structures',
+			title: 'Arrays',
 			breadcrumbs: [
 				rootCrumb,
 				['/data-structures/arrays', 'Arrays']
+			]
+		}
+	});
+});
+
+router.get('/dynamic-arrays', function (req, res) {
+	res.render('data-structures/dynamic-arrays', {
+		_: {
+			activePage: 'root',
+			title: 'Dynamic Arrays',
+			breadcrumbs: [
+				rootCrumb,
+				['/data-structures/dynamic-arrays', 'Dynamic Arrays']
 			]
 		}
 	});
