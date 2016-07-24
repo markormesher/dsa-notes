@@ -5,9 +5,125 @@ block page-body
 	h1 Linked Lists
 
 	ul
+		li: a(href = '#dlls') Doubly-Linked Lists
 		li: a(href = '#efficiency') Efficiency
-		li: a(href = '#example-basic-usage') Example: Basic Usage
+		li: a(href = '#implementations') Implementations
+		li: a(href = '#example-class-structure') Example: Class Structure
+		li: a(href = '#example-reverse') Example: Reverse a Linked List
 
-	p A linked list is a #[strong linear collection of nodes], each of which typically contains a data element and a pointer to the next node. Additional pointers are maintained for the list's #[strong head] (first node) and optionally its #[strong tail] (last node).
+	p A linked list is a #[strong linear collection of nodes], each of which typically contains a #[strong data element] and a #[strong pointer to the next node]. This structure allows for efficient insertion or removal at any point in the list during iteration (see notes in #[a(href = '#efficiency') Efficiency]).
 
-	p TODO: the rest of this
+	p An additional pointer must be maintained for the list's #[strong head] (first node), and optionally its #[strong tail] (last node).
+
+	h2#dlls Doubly-Linked Lists
+
+	p In a doubly-linked lists (#[strong DLL]) each node has pointers to both the #[strong next and previous nodes].  Although this requires more pointer updates for each operation, it allows iteration in either direction and can simplify some operations (because there is no need to an algorithm to keep track of the previously visited node).
+
+	h2#efficiency Efficiency
+
+	div.row
+		div.col-md-6
+			p When the node before an insertion/deletion point is known, operations can be performed in #[code O(1)] because only a fixed number of pointer updates need to take place. However, searching for that point is an #[code O(n)] operation.
+
+			p #[strong Indexing into a linked list is slower] than when using an #[a(href = '/data-structures/arrays') array] because random access is not offered: accessing index #[code i] requires the traversal of #[code ~i] elements.
+
+			p Linked lists have an #[code O(n)] memory overhead because of the pointers that exist for each node. However, linked lists #[strong do not require contiguous memory] and can grow arbitrarily until the memory is full, even if that memory is fragmented. This is an advantage over #[a(href = '/data-structures/arrays') array] and #[a(href = '/data-structures/dynamic-arrays') dynamic arrays].
+
+		div.col-md-6
+			table.table
+				tr
+					th Indexing
+					td.danger.text-mono O(n)
+				tr
+					th Search
+					td.danger.text-mono O(n)
+				tr
+					th Insert/delete at the beginning
+					td.success.text-mono O(1)
+				tr
+					th Insert/delete at end
+					td.warning.
+						#[span.text-mono O(1)] when tail element is known
+						#[br]
+						#[span.text-mono O(n)] when tail element is unknown
+
+				tr
+					th Insert/delete in middle
+					td.warning search time + #[span.text-mono O(1)]
+
+	h2#implementations Implementations
+
+	p Java implements a DLL in the #[code LinkedList&lt;E&gt;] class; C++ implements a DLL in the #[code std::list&lt;E&gt;] class.
+
+	h2#example-class-structure Example: Class Structure
+
+	div.row
+		div.col-md-6
+			h3 Java
+
+			pre: code.java.
+				public class DoublyLinkedList&lt;E&gt; {
+
+					private Node head;
+					private int size = 0;
+
+					private static class Node&lt;E&gt; {
+						E data;
+						Node next;
+						Node prev;
+
+						public Node(E data) {
+							this.data = data;
+						}
+					}
+
+				}
+
+	h2#example-reverse Example: Reverse a Linked List
+
+	div.row
+		div.col-md-6
+			h3 Java, Singly-Linked List
+
+			pre: code.java.
+				// this would be a method inside the LinkedList class
+
+				void reverse() {
+					Node temp;
+					Node current = head;
+
+					// swap next and prev of all nodes
+					while (current != null) {
+						temp = current.prev;
+						current.prev = current.next;
+						current.next = temp;
+
+						// use current.prev to advance, because we
+						// swapped the pointers
+						current = current.prev;
+					}
+
+					// update head, if the list had more than one element
+					if (temp != null) head = temp.prev;
+				}
+
+		div.col-md-6
+			h3 Java, Doubly-Linked List
+
+			pre: code.java.
+				// this would be a method inside the DoublyLinkedList class
+
+				void reverse() {
+					Node temp;
+					Node prev = null;
+
+					// swap next and prev of all nodes
+					while (head != null) {
+						temp = head.next;
+						head.next = prev;
+						prev = head;
+						head = temp;
+					}
+
+					head = prev;
+				}
