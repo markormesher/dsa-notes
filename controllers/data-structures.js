@@ -33,7 +33,21 @@ router.get('/dynamic-arrays', function (req, res) {
 			title: 'Dynamic Arrays',
 			breadcrumbs: [
 				rootCrumb,
+				['/data-structures/arrays', 'Arrays'],
 				['/data-structures/dynamic-arrays', 'Dynamic Arrays']
+			]
+		}
+	});
+});
+
+router.get('/linked-lists', function (req, res) {
+	res.render('data-structures/linked-lists', {
+		_: {
+			activePage: 'root',
+			title: 'Linked Lists',
+			breadcrumbs: [
+				rootCrumb,
+				['/data-structures/linked-lists', 'Linked Lists']
 			]
 		}
 	});
