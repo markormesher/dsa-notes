@@ -4,19 +4,28 @@ block page-body
 
 	h1 Arrays
 
+	ul
+		li: a(href = '#efficiency') Efficiency
+		li: a(href = '#example-basic-usage') Example: Basic Usage
+		li: a(href = '#example-reverse') Example: Reverse an Array
+		li: a(href = '#see-also') See Also
+
 	p An array is a container structure that stores a #[strong fixed length] set of values, all of which must be of the #[strong same time]. The size of an array is established and fixed when it is created. Elements of an array are accessed by their index; index numbering starts from zero.
 
-	h2 Efficiency
+	h2#efficiency Efficiency
 
 	div.row
+		div.col-md-6
+			p Arrays offer #[strong excellent performance for random access] when the index is known, but #[strong poor performance for searching] because every element may have to be checked until a match is found.
+
 		div.col-md-6
 			table.table
 				tr
 					th Indexing
-					td.success O(1)
+					td.success.text-mono O(1)
 				tr
 					th Search
-					td.danger O(n)
+					td.danger.text-mono O(n)
 				tr
 					th Insert/delete at beginning
 					td N/A
@@ -27,7 +36,7 @@ block page-body
 					th Insert/delete in middle
 					td N/A
 
-	h2 Examples
+	h2#example-basic-usage Example: Basic Usage
 
 	div.row
 		div.col-md-6
@@ -68,7 +77,34 @@ block page-body
 				cout &lt;&lt; luckyNumbers[2]; // 15
 				cout &lt;&lt; hello[0]; // h
 
-	h3 See Also
+	h2#example-reverse Example: Reverse an Array
+
+	p An array can be reversed by swapping each element with its counterpart at &quot;the other end of the array&quot; until the midpoint is reached.
+
+	div.row
+		div.col-md-6
+			h3 Java
+
+			pre: code.java.
+				// ar is an array of ints
+
+				for (int i = 0, n = ar.length / 2; i < n; ++i) {
+					int temp = ar[i];
+					ar[i] = ar[n - i - 1];
+					ar[n - i - i] = temp;
+				}
+
+		div.col-md-6
+			h3 C++
+
+			pre: code.cpp.
+				// ar is an array of ints
+
+				for (int i = 0, n = ar.length / 2; i < n; ++i) {
+					swap(ar[i], ar[n - i - 1]);
+				}
+
+	h2#see-also See Also
 
 	ul
 		li: a(href = '/data-structures/dynamic-arrays') Dynamic Arrays

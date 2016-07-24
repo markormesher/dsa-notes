@@ -4,36 +4,46 @@ block page-body
 
 	h1 Dynamic Arrays
 
+	ul
+		li: a(href = '#efficiency') Efficiency
+		li: a(href = '#example-basic-usage') Example: Basic Usage
+		li: a(href = '#see-also') See Also
+
 	p A dynamic array, also known as a #[strong growable] or #[strong resizable] array, is a container structure that provides the same features as a regular array #[strong without requiring the size to be declared or fixed].
 
 	p Dynamic arrays are usually #[strong built on top of standard arrays] of a fixed size. When the internal fixed-size array is full, the next insertion causes a new, larger array to be created and the existing elements to be copied to it.
 
 	p The total space in the internal array is the dynamic array's #[strong capacity] or #[strong physical size]; the currently used space is its #[strong logical size].
 
-	h2 Efficiency
+	h2#efficiency Efficiency
 
 	div.row
+		div.col-md-6
+			p Just like #[a(href = '/data-structures/arrays') regular arrays], dynamic arrays offer #[strong excellent random access performance] when the index is known but #[strong poor search performance].
+
+			p They are expanded by a constant factor (typically 1.25 - 2) each time their capacity is reached. Expanding by a constant factor ensures that inserting #[code n] elements takes #[code O(n)] time, meaning each insertion takes #[strong amortized constant time].
+
+			p Insertion at the beginning or middle of the array is slow because all elements after the insertion point must be shifted along.
+
 		div.col-md-6
 			table.table
 				tr
 					th Indexing
-					td.success O(1)
+					td.success.text-mono O(1)
 				tr
 					th Search
-					td.danger O(n)
+					td.danger.text-mono O(n)
 				tr
 					th Insert/delete at beginning
-					td.danger O(n)
+					td.danger.text-mono O(n)
 				tr
 					th Insert/delete at end
-					td.success O(1) #[em amortised*]
+					td.success #[span.text-mono O(1)] amortised
 				tr
 					th Insert/delete in middle
-					td.danger O(n)
-		div.col-md-6
-			p * Dynamic arrays are expanded by a constant factor each time, usually in the range 1.25-2. Expanding by a constant factor ensures that inserting #[code n] elements takes #[code O(n)] time, meaning each insertion takes #[strong amortized constant time].
+					td.danger.text-mono O(n)
 
-	h2 Examples
+	h2#example-basic-usage Example: Basic Usage
 
 	div.row
 		div.col-md-6
@@ -66,7 +76,7 @@ block page-body
 				// retrieve a value
 				cout &lt;&lt; scores[3]; // 3
 
-	h3 See Also
+	h2#see-also See Also
 
 	ul
 		li: a(href = '/data-structures/arrays') Arrays
