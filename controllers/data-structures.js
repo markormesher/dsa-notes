@@ -53,4 +53,17 @@ router.get('/linked-lists', function (req, res) {
 	});
 });
 
+router.get('/stacks', function (req, res) {
+	res.render('data-structures/stacks', {
+		_: {
+			activePage: 'root',
+			title: 'Stacks',
+			breadcrumbs: [
+				rootCrumb,
+				['/data-structures/stacks', 'Stacks']
+			]
+		}
+	});
+});
+
 module.exports = router;
