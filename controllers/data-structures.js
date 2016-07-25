@@ -1,67 +1,49 @@
 var express = require('express');
 var router = express.Router();
 
-var rootCrumb = ['/data-structures', 'Data Structures'];
+var rootCrumbs = [
+	['/data-structures', 'Data Structures']
+];
 
-router.get('/', function (req, res) {
-	res.render('data-structures/index', {
-		_: {
-			activePage: 'root',
-			title: 'Data Structures',
-			breadcrumbs: [rootCrumb]
-		}
-	});
-});
+var pages = {
+	'': {
+		title: 'Data Structures'
+	},
+	'arrays': {
+		title: 'Arrays'
+	},
+	'dynamic-arrays': {
+		title: 'Dynamic Arrays',
+		crumbs: [
+			['/data-structures/arrays', 'Arrays']
+		]
+	},
+	'linked-lists': {
+		title: 'Linked Lists'
+	},
+	'stacks': {
+		title: 'Stacks'
+	}
+};
 
-router.get('/arrays', function (req, res) {
-	res.render('data-structures/arrays', {
-		_: {
-			activePage: 'root',
-			title: 'Arrays',
-			breadcrumbs: [
-				rootCrumb,
-				['/data-structures/arrays', 'Arrays']
-			]
-		}
-	});
-});
+router.get('/*', function (req, res, next) {
+	var pageId = req.path.substr(1);
 
-router.get('/dynamic-arrays', function (req, res) {
-	res.render('data-structures/dynamic-arrays', {
-		_: {
-			activePage: 'root',
-			title: 'Dynamic Arrays',
-			breadcrumbs: [
-				rootCrumb,
-				['/data-structures/arrays', 'Arrays'],
-				['/data-structures/dynamic-arrays', 'Dynamic Arrays']
-			]
-		}
-	});
-});
+	if (!pages[pageId]) {
+		next();
+		return;
+	}
 
-router.get('/linked-lists', function (req, res) {
-	res.render('data-structures/linked-lists', {
-		_: {
-			activePage: 'root',
-			title: 'Linked Lists',
-			breadcrumbs: [
-				rootCrumb,
-				['/data-structures/linked-lists', 'Linked Lists']
-			]
-		}
-	});
-});
+	var page = pages[pageId];
 
-router.get('/stacks', function (req, res) {
-	res.render('data-structures/stacks', {
+	res.render('data-structures/' + (pageId == '' ? 'index' : pageId), {
 		_: {
-			activePage: 'root',
-			title: 'Stacks',
-			breadcrumbs: [
-				rootCrumb,
-				['/data-structures/stacks', 'Stacks']
-			]
+			title: page.title,
+			breadcrumbs: rootCrumbs
+				.concat(page.crumbs || [])
+				.concat([
+					['/data-structures/' + pageId, page.title]
+				])
 		}
 	});
 });
