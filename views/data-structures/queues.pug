@@ -1,0 +1,98 @@
+extends ../_shared/page-layout
+
+block page-body
+
+	h1 Queues
+
+	ul
+		li: a(href = '#implementation') Implementation
+		li: a(href = '#efficiency') Efficiency
+		li: a(href = '#example-basic-usage') Example: Basic Usage
+		li: a(href = '/data-structures/deques') See Also: Deques
+
+	p A queue is an ordered, linear collection that allows elements to be retrieved in a #[strong First In, First Out (FIFO)] order. The elements that were most recently added form the #[strong &quot;back&quot;] of the queue; the elements added least recently form the #[strong &quot;front&quot;] of the queue.
+
+	p Queues have two primary operations: #[code add(e)] or #[code enqueue(e)] to add the element #[code e] to the collection, and #[code remove()] or #[code dequeue()] to return the element that was most recently added to the queue that has not yet been removed. Additional methods may exist to get the first element without removing it from the collection.
+
+	h2#implementation Implementation
+
+	p Queues can be viewed as a specialised form of a #[a(href = '/data-structures/deques') deque] and can be built using the #[code addLast()] and #[code getFirst()] methods.
+
+	div.row
+		div.col-md-6
+			h3 Deque Implementation, Pseudocode
+
+			pre: code.
+				class Queue {
+					Deque elements
+
+					add(e) {
+						elements.addLast(e)
+					}
+
+					remove() {
+						if elements is empty, throw error
+
+						return elements.removeFirst()
+					}
+
+					size() {
+						return elements.size
+					}
+				}
+
+	h2#efficiency Efficiency
+
+	p Using either a #[a(href = '/data-structures/dynamic-arrays') dynamic array]-based or #[a(href = '/data-structures/linked-lists') doubly-linked list]-based implementation of a #[a(href = '/data-structures/deque') deque] structure, all operations can be performed in #[code O(1)].
+
+	h2#example-basic-usage Example: Basic Usage
+
+	div.row
+		div.col-md-6
+			h3 Java
+
+			pre: code.java.
+				Queue&lt;Integer&gt; intQueue = new Queue&lt;&gt;();
+
+				intQueue.add(4);
+				intQueue.add(15);
+				intQueue.add(37);
+
+				// remove: returns and removes the front element
+				System.out.println(intQueue.remove()); // 4
+				System.out.println(intQueue.remove()); // 15
+
+				System.out.println(intQueue.size()); // 1
+
+				// peek: returns, but doesn't remove the top element
+				System.out.println(intQueue.peek()); // 4
+				System.out.println(intQueue.isEmpty()); // false
+
+				System.out.println(intQueue.remove()); // 4
+				System.out.println(intQueue.isEmpty()); // true
+
+		div.col-md-6
+			h3 C++
+
+			pre: code.cpp.
+				queue&lt;int&gt; intQueue;
+
+				intQueue.push(4);
+				intQueue.push(15);
+				intQueue.push(37);
+
+				// front: returns, but doesn't remove the front element
+				cout << intQueue.front(); // 4
+				cout << intQueue.front(); // 4
+
+				// pop: removes the top element, but doesn't return it
+				intQueue.pop(); // stack now has 2 elements
+
+				cout << intQueue.front(); // 15
+				intQueue.pop(); // stack now has 1 element
+
+				cout << intQueue.front(); // 37
+				cout << intQueue.empty(); // false
+
+				intQueue.pop();
+				cout << intQueue.empty(); // true

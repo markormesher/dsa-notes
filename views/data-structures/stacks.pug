@@ -8,68 +8,32 @@ block page-body
 		li: a(href = '#implementation') Implementation
 		li: a(href = '#efficiency') Efficiency
 		li: a(href = '#example-basic-usage') Example: Basic Usage
+		li: a(href = '/data-structures/deques') See Also: Deques
 
-	p A stack is a collection that allows elements to be retrieved in a #[strong Last In, First Out (LIFO)] order. The elements that were most recently added form the #[strong &quot;top&quot;] of the stack; the elements added least recently form the #[strong &quot;bottom&quot;] of the stack.
+	p A stack is an ordered, linear collection that allows elements to be retrieved in a #[strong Last In, First Out (LIFO)] order. The elements that were most recently added form the #[strong &quot;top&quot;] of the stack; the elements added least recently form the #[strong &quot;bottom&quot;] of the stack.
 
 	p Stacks have two primary operations: #[code push(e)] to add the element #[code e] to the collection, and #[code pop()] to return the element that was most recently added to the stack that has not yet been removed. An additional #[code peek()] operation may return the top element without removing it from the collection.
 
 	h2#implementation Implementation
 
-	p Stacks are most commonly implemented on top of an #[a(href = '/data-structures/arrays') array] or #[a(href = '/data-structures/linked-lists') linked list].
+	p Stacks can be viewed as a specialised form of a #[a(href = '/data-structures/deques') deque] and can be built using the #[code addLast()] and #[code getLast()] methods.
 
 	div.row
 		div.col-md-6
-			h3 Array Implementation, Pseudocode
+			h3 Deque Implementation, Pseudocode
 
 			pre: code.
 				class Stack {
-					topIndex = 0
-					elements = [];
+					Deque elements
 
-					push(e) {
-						elements[topIndex] = e
-						++topIndex
+					enqueue(e) {
+						elements.addLast(e)
 					}
 
-					pop() {
-						if topIndex == 0 throw error
+					dequeue() {
+						if elements is empty, throw error
 
-						--topIndex
-						temp = elements[topIndex]
-						deallocate elements[topIndex]
-						return temp
-					}
-
-					peek() {
-						if topIndex == 0 throw error
-
-						return elements[topIndex - 1]
-					}
-
-					size() {
-						return topIndex
-					}
-				}
-
-		div.col-md-6
-			h3 Linked List Implementation, Pseudocode
-
-			pre: code.
-				class Stack {
-					LinkedList elements;
-
-					push(e) {
-						elements.insertAtHead(e)
-					}
-
-					pop() {
-						if elements.isEmpty() throw error
-
-						return elements.removeHead()
-					}
-
-					peek() {
-						return elements.getHead()
+						return elements.removeLast()
 					}
 
 					size() {
@@ -79,30 +43,7 @@ block page-body
 
 	h2#efficiency Efficiency
 
-	div.row
-		div.col-md-6
-			p Both implementations above are capable of providing #[code O(1)] performance for push and pop operations.
-
-			p Unless the stack's maximum size is known and fixed at creation, a #[a(href = '/data-structures/dynamic-arrays') dynamic array] must be used for an array-based implementation (they still offer amortised #[code O(1)] performance). In this case a trade-off exists: #[a(href = '/data-structures/linked-lists') linked lists] do not require contiguous memory but they do have a &quot;wasted&quot; memory overhead for pointers; #[a(href = '/data-structures/dynamic-arrays') dynamic arrays] require contiguous memory, but they make better use of it.
-
-		div.col-md-6
-			table.table
-				tr
-					td
-					th w/ Arrays
-					th w/ Linked Lists
-				tr
-					th Push
-					td.success.text-mono O(1)
-					td.success.text-mono O(1)
-				tr
-					th Pop
-					td.success.text-mono O(1)
-					td.success.text-mono O(1)
-				tr
-					th Peek
-					td.success.text-mono O(1)
-					td.success.text-mono O(1)
+	p Using either a #[a(href = '/data-structures/dynamic-arrays') dynamic array]-based or #[a(href = '/data-structures/linked-lists') doubly-linked list]-based implementation of a #[a(href = '/data-structures/deque') deque] structure, all operations can be performed in #[code O(1)].
 
 	h2#example-basic-usage Example: Basic Usage
 

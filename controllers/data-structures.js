@@ -21,6 +21,12 @@ var pages = {
 	'linked-lists': {
 		title: 'Linked Lists'
 	},
+	'deques': {
+		title: 'Double-Ended Queues (Deques)'
+	},
+	'queues': {
+		title: 'Queues'
+	},
 	'stacks': {
 		title: 'Stacks'
 	}

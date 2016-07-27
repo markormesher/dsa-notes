@@ -1,0 +1,30 @@
+extends ../_shared/page-layout
+
+block page-body
+
+	h1 Double-Ended Queues (Deques)
+
+	ul
+		li: a(href = '#implementation') Implementation
+		li: a(href = '#efficiency') Efficiency
+		li: a(href = '/data-structures/queues') See Also: Queues
+		li: a(href = '/data-structures/stacks') See Also: Stacks
+
+	p A double-ended queue (often shortened to #[strong deque], pronounced #[em deck]) is an abstract data type that maintains an #[strong ordered, linear collection of elements] and allows for #[strong efficient insertion and removal at both ends] of the collection.
+
+	p Deques often form the underling structure used in #[a(href = '/data-structures/stacks') stack] and #[a(href = '/data-structures/queues') queue] implementations.
+
+	h2#implementation Implementation
+
+	p #[a(href = '/data-structures/linked-lists') Doubly-linked lists] provide #[code O(1)] insertion and deletion at both ends, making them an obvious choice for the underlying structure of deque implementations.
+
+	p Deques can also be built on top of #[a(href = '/data-structures/dynamic-arrays') dynamic arrays] that have been modified to grow at either end. One common way of performing such modification is to implement the array as a circular buffer, growing it only when the buffer is full.
+
+	// TODO: example implementation
+	p TODO: example implementation
+
+	h2#efficiency Efficiency
+
+	p Both implementations above are capable of providing #[code O(1)] performance for all operations. Even though #[a(href = '/data-structures/dynamic-arrays') dynamic arrays] must be expanded and copied, they still offer amortised #[code O(1)] performance.
+
+	p A trade-off exists with both implementations: #[a(href = '/data-structures/linked-lists') linked lists] do not require contiguous memory but they do have a &quot;wasted&quot; memory overhead for pointers; #[a(href = '/data-structures/dynamic-arrays') dynamic arrays] require contiguous memory, but they make better use of it.
