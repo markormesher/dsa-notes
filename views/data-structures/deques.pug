@@ -20,8 +20,54 @@ block page-body
 
 	p Deques can also be built on top of #[a(href = '/data-structures/dynamic-arrays') dynamic arrays] that have been modified to grow at either end. One common way of performing such modification is to implement the array as a circular buffer, growing it only when the buffer is full.
 
-	// TODO: example implementation
-	p TODO: example implementation
+	div.row
+		div.col-md-6
+			h3 Pseudocode
+
+			pre: code.
+				class DoubleEndedQueue {
+					DoublyLinkedLinked elements
+
+					addFirst(e) {
+						elements.insertAtHead(e)
+					}
+
+					getFirst() {
+						if elements is empty, throw error
+
+						return elements.getHead().data
+					}
+
+					removeFirst() {
+						if elements is empty, throw error
+
+						return elements.removeHead().data
+					}
+
+					addLast(e) {
+						elements.insertAtTail(e)
+					}
+
+					getLast() {
+						if elements is empty, throw error
+
+						return elements.getTail().data
+					}
+
+					removeLast() {
+						if elements is empty, throw error
+
+						return elements.removeTail().data
+					}
+
+					size() {
+						return elements.size
+					}
+
+					isEmpty() {
+						return elements.size == 0
+					}
+				}
 
 	h2#efficiency Efficiency
 
