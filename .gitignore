@@ -2,6 +2,9 @@
 *.css
 !public/_vendor/css/*
 
+# Ignore compiled java
+*.class
+
 ### Below: created by https://www.gitignore.io/api/intellij,node,linux,windows ###
 
 ### Intellij ###

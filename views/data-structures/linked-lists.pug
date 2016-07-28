@@ -55,6 +55,12 @@ block page-body
 
 	p Java implements a DLL in the #[code LinkedList&lt;E&gt;] class; C++ implements a DLL in the #[code std::list&lt;E&gt;] class.
 
+	p A sample implementation can be found below:
+
+	ul
+		li: a(href = '/java/DoublyLinkedList.java') DoublyLinkedList.java
+		li: a(href = '/java/DoublyLinkedListTests.java') DoublyLinkedListTests.java
+
 	h2#example-class-structure Example: Class Structure
 
 	div.row
@@ -65,6 +71,7 @@ block page-body
 				public class DoublyLinkedList&lt;E&gt; {
 
 					private Node head;
+					private Node tail;
 					private int size = 0;
 
 					private static class Node&lt;E&gt; {
