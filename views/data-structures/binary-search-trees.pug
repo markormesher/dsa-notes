@@ -1,0 +1,70 @@
+extends ../_shared/page-layout
+
+block page-body
+
+	h1 Binary Search Trees
+
+	ul
+		li: a(href = '#efficiency') Efficiency
+		li: a(href = '#operations') Operations
+		li: a(href = '#balance') Balance
+		li: a(href = '/algorithms/binary-search') See Also: Binary Search Algorithms
+
+	div.row
+		div.col-md-8
+			p A binary search tree (BST) is a #[a(href = '/data-structures/trees') tree] with #[strong a degree of 2] whose nodes each store a #[strong key], which is usually linked to some associated value or record. For any given node, its key must be larger than the keys of all nodes in its left sub-tree, and smaller than the keys of all nodes in its right sub-tree.
+
+			p As the name suggests, binary search trees are primarily used for #[strong search and retrieval of items in some ordered set].
+
+		div.col-md-4
+			div.thumbnail.pull-right
+				img(src = '/images/binary-search-tree.png', width = '80%')
+				div.caption
+					p A binary search tree with nine nodes, rooted at 8.
+
+	h2#efficiency Efficiency
+
+	div.row
+		div.col-md-6
+			p In a #[a(href = '#balance') well-balanced] tree each step downwards through the tree eliminates roughly half of the remaining sub-tree, meaning that most operations can be executed in time proportional to #[code log(n)] for a tree with #[code n] items.
+
+		div.col-md-6
+			table.table
+				tr
+					th
+					th Average
+					th Worst
+				tr
+					th Space
+					td.text-mono O(n)
+					td.text-mono O(n)
+				tr
+					th Search
+					td.success.text-mono O(log n)
+					td.danger.text-mono O(n)
+				tr
+					th Insert
+					td.success.text-mono O(log n)
+					td.danger.text-mono O(n)
+				tr
+					th Delete
+					td.success.text-mono O(log n)
+						td.danger.text-mono O(n)
+
+	h2#operations Operations
+
+	//- TODO: BST Operations
+
+	h3 Searching
+
+	h3 Insertion
+
+	h3 Deletion
+
+	h3 Traversal
+
+	p See #[a(href = '/algorithms/binary-tree-traversals') binary tree traversals].
+
+	h3 Verification
+
+	h2#balance Balance

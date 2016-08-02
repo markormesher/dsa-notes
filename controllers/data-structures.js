@@ -12,6 +12,21 @@ var pages = {
 	'arrays': {
 		title: 'Arrays'
 	},
+	'balanced-trees': {
+		title: 'Balanced Trees',
+		crumbs: [
+			['/data-structures/trees', 'Trees']
+		]
+	},
+	'binary-search-trees': {
+		title: 'Binary Search Trees',
+		crumbs: [
+			['/data-structures/trees', 'Trees']
+		]
+	},
+	'deques': {
+		title: 'Double-Ended Queues (Deques)'
+	},
 	'dynamic-arrays': {
 		title: 'Dynamic Arrays',
 		crumbs: [
@@ -21,14 +36,20 @@ var pages = {
 	'linked-lists': {
 		title: 'Linked Lists'
 	},
-	'deques': {
-		title: 'Double-Ended Queues (Deques)'
-	},
 	'queues': {
 		title: 'Queues'
 	},
+	'sparse-arrays': {
+		title: 'Sparse Arrays',
+		crumbs: [
+			['/data-structures/arrays', 'Arrays']
+		]
+	},
 	'stacks': {
 		title: 'Stacks'
+	},
+	'trees': {
+		title: 'Trees'
 	}
 };
 

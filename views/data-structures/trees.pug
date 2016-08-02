@@ -1,0 +1,102 @@
+extends ../_shared/page-layout
+
+block page-body
+
+	h1 Trees
+
+	ul
+		li: a(href = '#terminology') Terminology
+		li: a(href = '#implementation') Implementation
+		li: a(href = '/data-structures/binary-search-trees') See Also: Binary Search Trees
+		li: a(href = '/data-structures/balanced-trees') See Also: Balanced Trees
+
+	div.row
+		div.col-md-8
+			p A tree is an abstract data type that describes a #[strong hierarchical tree structure]. Trees are composed of #[strong zero or more nodes], each of which has a value, #[strong zero or more children], and a #[strong single parent node]. One #[strong root node] is the only exception to this, as it has no parent node (which may or may not be explicitly stored). Some specific types of trees impose constraints on the number of children a node may have (see #[a(href = '#binary-trees') Binary Trees]).
+
+			p A tree is usually defined #[strong recursively (locally)] as a collection of nodes (starting at the root) where each node is a structure that represents its value and a list of references to its child nodes, with the stipulation that no references is repeated (throughout the whole tree) and no node points to the root as its child.
+
+		div.col-md-4
+			div.thumbnail.pull-right
+				img(src = '/images/binary-tree.png', width = '80%')
+				div.caption
+					p A simple tree showing the root (2) with two children (7 and 5), and nine nodes in total.
+
+	h2#terminology Terminology
+
+	div.row
+		div.col-md-4
+			p #[strong Root:] the top node in a tree, which has no parent.
+			p #[strong Child:] the node connected to another node in a direction leading #[em away from] the root.
+			p #[strong Parent:] the node connected to another node in a direction leading #[em towards] the root.
+			p #[strong Siblings:] nodes with the same parent.
+			p #[strong Descendant:] any node reachable on some #[em downwards] path from a given node.
+			p #[strong Ancestor:] any node reachable on some #[em upwards] path from a given node.
+			p #[strong Internal node:] a node with at least one child.
+			p #[strong Leaf node] or #[strong external node:] a node with no children.
+
+		div.col-md-4
+			p #[strong Edge:] the connection between two nodes.
+			p #[strong Path:] a combination of one or more edges between two nodes.
+			p #[strong Degree] or #[strong branching factor:] the number of children/sub-trees of a node.
+			p #[strong Full] or #[strong proper trees:] a tree with a degree of #[code n] is full/proper if each non-leaf node has exactly #[code n] children.
+			p #[strong Complete trees:] a tree is complete if every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible.
+
+		div.col-md-4
+			p #[strong Level of a node:] the number of connections between a given node and the root, plus one.
+			p #[strong Height of a node:] the number of edges on the longest path from the node to a leaf.
+			p #[strong Height of a tree:] the height of the tree's root node.
+			p #[strong Depth of a node:] the number of edges between a given node and the tree's root node.
+			p #[strong Forest:] a (possibly empty) set of disjoint trees.
+
+	h2#implementation Implementation
+
+	p A tree is most commonly implemented as a collection of smaller #[code Node] objects and referenced with a pointer to the root node. A &quot;wrapper&quot; structure may be used to store other meta-data such as the size of the tree.
+
+	div.row
+		div.col-md-6
+			h3 Unconstrained Tree Node Structure, Java
+
+			pre: code.java.
+				public class TreeNode&lt;E&gt; {
+
+					E data;
+					GenericTreeNode parent;
+					List&lt;GenericTreeNode&gt; children;
+
+					// note: the parent reference is not used
+					// in all implementations; when it is present,
+					// it must be null for the root node.
+
+				}
+
+		div.col-md-6
+			h3 Binary Tree Node Structure, Java
+
+			pre: code.java.
+				public class BinaryTreeNode&lt;E&gt; {
+
+					E data;
+					GenericTreeNode parent;
+					GenericTreeNode leftChild;
+					GenericTreeNode rightChild;
+
+					// note: the parent reference is not used
+					// in all implementations; when it is present,
+					// it must be null for the root node.
+
+				}
+
+	h3 Storing a Tree in an Array
+
+	p When the height #[code h] and degree #[code d] of a tree are fixed, the nodes can also be stored in an #[a(href = '/data-structures/arrays') array] of size #[code (d ^ h) - 1]. This is most often seen with #[a(href = '#binary-trees') binary trees], where the required array size is #[code (2 ^ h) - 1].
+
+	p For binary trees the root node is stored at position #[code 0] and the position of further nodes is calculated as follows:
+
+	ul
+		li The left child of a node at position #[code k] is stored at position #[code 2k]
+		li The right child of a node at position #[code k] is stored at position #[code 2k + 1]
+
+	p More generally, a tree with a maximum degree of #[code d] can be stored in an array by placing the root node at position #[code 0] again, and then placing the #[code n]th child of a node at position #[code k] into position #[code dk + n], where #[code n] is in the range #[code 0, 1, ..., d - 1].
+
+	p #[strong Note:] when the height of a tree is unknown, this storage method can still be implemented with a #[a(href = '/data-structures/dynamic-arrays') dynamic array]. Particularly sparse trees that are stored in this fashion will benefit from storage in #[a(href = '/data-structures/sparse-arrays') sparse arrays].
