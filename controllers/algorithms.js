@@ -12,14 +12,14 @@ var pages = {
 	'binary-search': {
 		title: 'Binary Search'
 	},
-	'binary-tree-traversals': {
-		title: 'Binary Tree Traversals',
+	'tree-algorithms': {
+		title: 'Tree Algorithms'
+	},
+	'tree-traversals': {
+		title: 'Tree Traversals',
 		crumbs: [
 			['/algorithms/tree-algorithms', 'Tree Algorithms']
 		]
-	},
-	'tree-algorithms': {
-		title: 'Tree Algorithms'
 	}
 };
 

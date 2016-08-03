@@ -1,0 +1,158 @@
+extends ../_shared/page-layout
+
+block page-body
+
+	h1 Tree Traversals
+
+	ul
+		li: a(href = '#dfs-bfs') Depth-First vs. Breadth-First
+		li: a(href = '#pre-order') Pre-Order (DFS)
+		li: a(href = '#in-order') In-Order (DFS)
+		li: a(href = '#post-order') Post-Order (DFS)
+		li: a(href = '#level-order') Level-Order (BFS)
+
+	p Tree traversal algorithms define a method for #[strong &quot;visiting&quot; every node in a #[a(href = '/data-structures/trees') tree]] exactly once, in some specific order. In contract to linear data-structures, like #[a(href = '/data-structures/arrays') arrays] or #[a(href = '/data-structures/linked-lists') linked lists], there are many different ways to traverse the elements of a tree.
+
+	h2#dfs-bfs Depth-First vs. Breadth-First
+
+	p Traversals are usually split into two major groups:
+
+	div.row
+		div.col-md-6
+			p #[strong Depth-first] traversals deepen the search tree as much as possible on each child before processing its siblings. These are usually implemented with a #[a(href = '/data-structures/stacks') stack] (including recursively, using the call stack).
+
+		div.col-md-6
+			p #[strong Breadth-first] traversals widen the search tree as much as possible on each depth before processing the next level.
+
+	h2#pre-order Pre-Order (DFS)
+
+	p The pre-order traversal of a tree visits the current node #[strong before] visiting its children.
+
+	div.row
+		div.col-md-6
+			h3 Recursive Pre-Order for a Binary Tree, Java
+
+			pre: code.java.
+				void preOrderTraversal(Node node) {
+					if (node == null) return;
+					visit(node);
+					preOrderTraversal(node.left);
+					preOrderTraversal(node.right);
+				}
+
+		div.col-md-6
+			h3 Iterative Pre-Order for a Binary Tree, Java
+
+			pre: code.java.
+				void iterativePreOrderTraversal(Node node) {
+					if (node == null) return;
+					Stack&lt;Node&gt; s = new Stack&lt;&gt;();
+					s.push(node);
+					while (!s.isEmpty()) {
+						node = s.pop();
+						visit(node);
+						if (node.right != null) s.push(node.right);
+						if (node.left != null) s.push(node.left);
+					}
+				}
+
+	h2#in-order In-Order (DFS)
+
+	p An in-order traversal of a tree is usually only usefully-defined for a binary tree, in which a node's left child is traverse, then the node itself is visited, then its right child is traversed.
+
+	p In a #[a(href = '/data-structures/binary-search-trees') binary search tree], this traversal will result in visiting all elements in order.
+
+	div.row
+		div.col-md-6
+			h3 Recursive In-Order for a Binary Tree, Java
+
+			pre: code.java.
+				void inOrderTraversal(node root) {
+					if (node == null) return;
+					inOrderTraversal(node.left);
+					visit(node);
+					inOrderTraversal(node.right);
+				}
+
+		div.col-md-6
+			h3 Iterative In-Order for a Binary Tree, Java
+
+			pre: code.java.
+				void iterativeInOrderTraversal(Node node) {
+					Stack&lt;Node&gt; s = new Stack&lt;&gt;();
+					while (!s.isEmpty() || node != null) {
+						if (node != null) {
+							s.push(node);
+							node = node.left;
+						} else {
+							node = s.pop();
+							visit(node);
+							node = node.right;
+						}
+					}
+				}
+
+	h2#post-order Post-Order (DFS)
+
+	p The post-order traversal of a tree visits the current node #[strong after] visiting its children. This ordering can be useful when each node needs to be updated based on the updated value of its children.
+
+	div.row
+		div.col-md-6
+			h3 Recursive Post-Order for a Binary Tree, Java
+
+			pre: code.java.
+				void postOrderTraversal(Node node) {
+					if (node == null) return;
+					postOrderTraversal(node.left);
+					postOrderTraversal(node.right);
+					visit(node);
+				}
+
+		div.col-md-6
+			h3 Iterative Post-Order for a Binary Tree, Java
+
+			pre: code.java.
+				void iterativePostOrderTraversal(Node node) {
+					Stack&lt;Node&gt; s = new Stack&lt;&gt;();
+					Node lastNodeVisited = null;
+					while (!s.isEmpty() || node != null) {
+						if (node != null) {
+							s.push(node);
+							node = node.left;
+						} else {
+							Node peekNode = s.peek();
+							if (peekNode.right != null
+							&& lastNodeVisited != peekNode.right) {
+								// if a right child exists
+								// and we're traversing from a
+								// left child, then move right
+								node = peekNode.right;
+							} else {
+								visit(peekNode);
+								lastNodeVisited = s.pop();
+							}
+						}
+					}
+				}
+
+	h2#level-order Level Order (BFS)
+
+	p The level-order traversal of a tree visits every node on a level before moving down to the next level, starting from the root. It can be easily implemented with a queue of unvisited nodes:
+
+	div.row
+		div.col-md-6
+			h3 Level-Order for a Generic Tree, Java
+
+			pre: code.java.
+				void levelOrder(Node root) {
+					if (root == null) return;
+					Queue&lt;Node&gt; q = new Queue&lt;&gt;();
+					q.enqueue(root);
+					while (!q.isEmpty()) {
+						Node node = q.dequeue();
+						visit(node);
+						for (int i = 0; i < node.children.length; ++i) {
+							q.enqueue(node.children[i]);
+						}
+					}
+				}

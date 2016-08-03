@@ -8,8 +8,8 @@ block page-body
 		li: a(href = '#efficiency') Efficiency
 		li: a(href = '#operations') Operations
 		li: a(href = '#balance') Balance
-		li: a(href = '/algorithms/binary-search') See Also: Binary Search Algorithms
-		li: a(href = '/algorithms/binary-tree-traversals') See Also: Binary Tree Traversals
+		li: a(href = '/algorithms/binary-search') See Also: Binary Search
+		li: a(href = '/algorithms/tree-traversals') See Also: Tree Traversals
 
 	div.row
 		div.col-md-8
@@ -167,7 +167,7 @@ block page-body
 		li Deleting a node with no children: simply remove it from the tree.
 		li Deleting a node with one child: remove it from the tree and replace it with its child.
 
-	p Deleting a node with two children is harder. First, call the node to be deleted #[code N], but do not delete it. Then find #[code N]'s #[a(href = '/algorithms/binary-tree-traversals#in-order') in-order] predecessor or successor, call it #[code R], and swap the values of #[code N] and #[code R]. Now recursively delete #[code R] until one of the first two cases is reached.
+	p Deleting a node with two children is harder. First, call the node to be deleted #[code N], but do not delete it. Then find #[code N]'s #[a(href = '/algorithms/tree-traversals#in-order') in-order] predecessor or successor, call it #[code R], and swap the values of #[code N] and #[code R]. Now recursively delete #[code R] until one of the first two cases is reached.
 
 	p In all BSTs, a node's in-order predecessor it its left sub-tree's right-most child, and a node's in-order successor is its right sub-tree's left-most child.
 
@@ -234,7 +234,7 @@ block page-body
 
 	h3 Traversal
 
-	p See #[a(href = '/algorithms/binary-tree-traversals') binary tree traversals].
+	p See #[a(href = '/algorithms/tree-traversals') tree traversals].
 
 	h3 Verification
 
@@ -251,7 +251,7 @@ block page-body
 
 	p The naive check would confirm that #[code left < self < right] holds for every node, but 5 appears in the right sub-tree of 20, which incorrectly implies that #[code 5 > 20] and means that 5 would never be found in a search.
 
-	p The solution below works by forcing the tree to be checked in a manner very similar to an #[a(href = '/algorithms/binary-tree-traversals#in-order') in-order tree traversal] and maintaining a record of the last value that was seen. Because the values should always be seen in order, #[code lastSeen < currentKey] implies a correct BST.
+	p The solution below works by forcing the tree to be checked in a manner very similar to an #[a(href = '/algorithms/tree-traversals#in-order') in-order tree traversal] and maintaining a record of the last value that was seen. Because the values should always be seen in order, #[code lastSeen < currentKey] implies a correct BST.
 
 	pre: code.java.
 		int lastNodeChecked = -1; // assume values are constrained to 0 and above

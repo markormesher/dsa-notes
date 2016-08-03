@@ -12,7 +12,7 @@ block page-body
 
 	div.row
 		div.col-md-8
-			p A tree is an abstract data type that describes a #[strong hierarchical tree structure]. Trees are composed of #[strong zero or more nodes], each of which has a value, #[strong zero or more children], and a #[strong single parent node]. One #[strong root node] is the only exception to this, as it has no parent node (which may or may not be explicitly stored). Some specific types of trees impose constraints on the number of children a node may have (see #[a(href = '#binary-trees') Binary Trees]).
+			p A tree is an abstract data type that describes a #[strong hierarchical tree structure]. Trees are composed of #[strong zero or more nodes], each of which has a value, #[strong zero or more children], and a #[strong single parent node]. One #[strong root node] is the only exception to this, as it has no parent node (which may or may not be explicitly stored). Some specific types of trees impose constraints on the number of children a node may have.
 
 			p A tree is usually defined #[strong recursively (locally)] as a collection of nodes (starting at the root) where each node is a structure that represents its value and a list of references to its child nodes, with the stipulation that no references is repeated (throughout the whole tree) and no node points to the root as its child.
 
@@ -89,7 +89,7 @@ block page-body
 
 	h3 Storing a Tree in an Array
 
-	p When the height #[code h] and degree #[code d] of a tree are fixed, the nodes can also be stored in an #[a(href = '/data-structures/arrays') array] of size #[code (d ^ h) - 1]. This is most often seen with #[a(href = '#binary-trees') binary trees], where the required array size is #[code (2 ^ h) - 1].
+	p When the height #[code h] and degree #[code d] of a tree are fixed, the nodes can also be stored in an #[a(href = '/data-structures/arrays') array] of size #[code (d ^ h) - 1]. This is most often seen with binary trees, where the required array size is #[code (2 ^ h) - 1].
 
 	p For binary trees the root node is stored at position #[code 0] and the position of further nodes is calculated as follows:
 
