@@ -4,4 +4,62 @@ block page-body
 
 	h1 Binary Search
 
-	//- TODO: Binary Search
+	p Binary search is a search algorithm that finds the position of a target value in a sorted #[a(href = '/data-structures/arrays') array]. It compares the target value to the middle of the search space, and if they are unequal it discards the half in which the target cannot exist and #[strong recursively] searches the remaining half until the target is found or the search space is exhausted.
+
+	ul
+		li: a(href = '#implementation') Implementation
+		li: a(href = '#efficiency') Efficiency
+		li: a(href = '/data-structures/binary-search-trees') See Also: Binary Search Trees
+		li: a(href = '/algorithms/fractional-cascading') See Also: Fractional Cascading
+
+	h2#implementation Implementation
+
+	blockquote
+		p Although the basic idea of binary search is comparatively straightforward, the details can be surprisingly tricky.
+		footer Donald Knuth
+
+	p Implementation of binary search can go wrong in several ways. A common family of errors is integer overflow in the pointers when working with particularly large arrays.
+
+	div.row
+		div.col-md-6
+			h3 Binary Search, Java
+
+			pre: code.java.
+				int binarySearch(int[] arr, int target) {
+					int left = 0;
+					int right = arr.length - 1;
+
+					while (left <= right) {
+						int mid = left + (right - left) / 2;
+						if (arr[mid] == target) {
+							return mid;
+						} else if (arr[mid] < target) {
+							// search the right half
+							left = mid + 1;
+						} else { // arr[mid] > target
+							// search the left half
+							right = mid - 1;
+						}
+					}
+
+					// nothing was found
+					return -1;
+				}
+
+	h2#efficiency Efficiency
+
+	div.row
+		div.col-md-6
+			p The only additional space consumed by binary search is that of the three pointers. The process eliminates half of the search space with each iteration, so search performs in #[code O(log n)].
+
+			p Although specialized data structures designed for fast searching (such as #[a(href = '/data-structures/hash-tables') hash tables]) can be searched more efficiently, binary search applies to a wider range of search problems.
+
+		div.col-md-6
+			table.table
+				tr
+					th Space
+					td.mono.success O(1)
+
+				tr
+					th Search
+					td.mono.warning O(log n)

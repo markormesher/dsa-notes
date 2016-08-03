@@ -12,6 +12,9 @@ var pages = {
 	'binary-search': {
 		title: 'Binary Search'
 	},
+	'fractional-cascading': {
+		title: 'Fractional Cascading'
+	},
 	'tree-algorithms': {
 		title: 'Tree Algorithms'
 	},
