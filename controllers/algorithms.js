@@ -15,9 +15,6 @@ var pages = {
 	'fractional-cascading': {
 		title: 'Fractional Cascading'
 	},
-	'tree-algorithms': {
-		title: 'Tree Algorithms'
-	},
 	'tree-traversals': {
 		title: 'Tree Traversals',
 		crumbs: [
