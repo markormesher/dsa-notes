@@ -39,12 +39,6 @@ var pages = {
 	'queues': {
 		title: 'Queues'
 	},
-	'sparse-arrays': {
-		title: 'Sparse Arrays',
-		crumbs: [
-			['/data-structures/arrays', 'Arrays']
-		]
-	},
 	'stacks': {
 		title: 'Stacks'
 	},
