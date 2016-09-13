@@ -54,7 +54,7 @@ block page-body
 					left = 0
 					right = len(input_array) - 1
 				 	while left <= right:
-				  		mid = int((right + left) / 2)
+				  		mid = int(left + (right - left) / 2)
 					 	if input_array[mid] == value:
 							# Return the index where value is found
 					  		return mid
