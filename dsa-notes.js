@@ -1,3 +1,5 @@
+const PORT = 3002;
+
 var path = require('path'),
 	express = require('express'),
 	sassMiddleware = require('node-sass-middleware'),
@@ -5,8 +7,6 @@ var path = require('path'),
 
 // start app
 app = express();
-
-const PORT = 3002;
 
 // middleware: SASS
 app.use(sassMiddleware({
