@@ -6,6 +6,8 @@ var path = require('path'),
 // start app
 app = express();
 
+const PORT = 3002;
+
 // middleware: SASS
 app.use(sassMiddleware({
 	src: __dirname + '/assets/',
@@ -47,4 +49,5 @@ app.use(function (error, req, res, next) {
 	});
 });
 
-server = app.listen(3002);
+server = app.listen(PORT);
+console.log("Server listening on port: " + PORT);
