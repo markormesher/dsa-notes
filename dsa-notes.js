@@ -1,3 +1,5 @@
+const PORT = 3002;
+
 var path = require('path'),
 	express = require('express'),
 	sassMiddleware = require('node-sass-middleware'),
@@ -47,4 +49,5 @@ app.use(function (error, req, res, next) {
 	});
 });
 
-server = app.listen(3002);
+server = app.listen(PORT);
+console.log("Server listening on port: " + PORT);

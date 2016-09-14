@@ -46,6 +46,27 @@ block page-body
 					return -1;
 				}
 
+		div.col-md-6
+			h3 Binary Search, Python
+
+			pre: code.python.
+				def binary_search(input_array, value):
+					left = 0
+					right = len(input_array) - 1
+				 	while left <= right:
+				  		mid = int(left + (right - left) / 2)
+					 	if input_array[mid] == value:
+							# Return the index where value is found
+					  		return mid
+					 	elif value > input_array[mid]:
+							# Search right hand side
+					  		left = mid + 1
+					 	elif value < input_array[mid]:
+							# Search left hand side
+					  		right = mid -1
+
+					return -1 # Value wasn't found
+
 	h2#efficiency Efficiency
 
 	div.row
